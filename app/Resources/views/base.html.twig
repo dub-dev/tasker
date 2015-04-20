@@ -6,13 +6,21 @@
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <link rel="stylesheet" href="{{ asset('vendor/twitter/bootstrap/dist/css/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
     </head>
     <body>
+    <nav class="navbar navbar-default" style="border-radius:0px">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">TASKER <small>work smart, work happy.</small> </a>
+            </div>
+        </div>
+    </nav>
         <div class="container">{% block content %}
-
         {% endblock %}</div>
 
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <footer>Thibaud Dubouchet &copy 2015</footer>
+        <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ asset('vendor/twitter/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     </body>
 </html>
