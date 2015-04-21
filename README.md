@@ -31,6 +31,10 @@ $ composer install
 $ bower install
 ```
 
+```sh
+$ php app/console doctrine:schema:update --force [Assuming you have a MySQL database called "symfony" !]
+```
+
 ### Plugins
 
 Tasker is currently extended with the following plugins
@@ -43,5 +47,5 @@ Readmes, how to use them in your own application can be found here:
 
 License
 ----
-* Thibaud Dubouchet &copy; 2015 - Web Engineer @ ReputationVIP
+* Thibaud Dubouchet &copy; 2015 - Web Developper @ Epitech
 * MIT
