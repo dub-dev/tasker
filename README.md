@@ -1,10 +1,9 @@
-# Tasker
+# Tasker === UNDER DEVELOPPMENT ===
 
 Tasker is an open source alternative for Trello under the MIT Licence
 
   - Multi users projects
   - Unlimited tasks & categories
-  - Fast, Beautiful & Full Ajax
 
 ### Version
 0.3 ALPHA
