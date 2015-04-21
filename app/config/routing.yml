@@ -1,8 +1,3 @@
-project_user:
-    resource: "@projectUserBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
