@@ -1,1 +1,12 @@
 {% extends "base.html.twig" %}
+
+{% block content %}
+    {% for board in boards %}
+        {{ board.name }}
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{ board.status }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ board.status }}%;">
+                <span class="sr-only">{{ board.status }}% Complete</span>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

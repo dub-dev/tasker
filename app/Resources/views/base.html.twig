@@ -26,6 +26,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{{ path('dashboard') }}">Dashboard</a></li>
                             <li><a href="{{ path('fos_user_profile_show') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a></li>
                             <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
                         </ul>
