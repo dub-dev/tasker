@@ -19,7 +19,7 @@ class TaskType extends AbstractType
             ->add('description')
             ->add('user')
             ->add('date')
-            ->add('status')
+            ->add('done')
             ->add('active')
             ->add('board')
         ;

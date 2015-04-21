@@ -24,7 +24,7 @@ class Task
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Board", inversedBy="task")
+     * @ORM\Column(name="board", type="integer")
      */
     private $board;
 
@@ -59,9 +59,9 @@ class Task
     /**
      * @var integer
      *
-     * @ORM\Column(name="status", type="integer")
+     * @ORM\Column(name="done", type="integer")
      */
-    private $status;
+    private $done;
 
     /**
      * @var integer
@@ -197,26 +197,26 @@ class Task
     }
 
     /**
-     * Set status
+     * Set done
      *
-     * @param integer $status
+     * @param integer $done
      * @return Task
      */
-    public function setStatus($status)
+    public function setDone($done)
     {
-        $this->status = $status;
+        $this->done = $done;
 
         return $this;
     }
 
     /**
-     * Get status
+     * Get done
      *
      * @return integer
      */
-    public function getStatus()
+    public function getDone()
     {
-        return $this->status;
+        return $this->done;
     }
 
     /**
