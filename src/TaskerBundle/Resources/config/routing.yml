@@ -2,6 +2,6 @@ tasker_homepage:
     path:     /
     defaults: { _controller: TaskerBundle:Default:index }
 
-dashboard:
-    path:     /dashboard
-    defaults: { _controller: TaskerBundle:Default:dashboard }
+tasker_board:
+    resource: "@TaskerBundle/Resources/config/routing/board.yml"
+    prefix:   /board

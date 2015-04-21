@@ -1,0 +1,49 @@
+{% extends '::base.html.twig' %}
+
+{% block content -%}
+    <h1>Board list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Active</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for board in boards %}
+            <tr>
+                <td><a href="{{ path('board_show', { 'id': board.id }) }}">{{ board.id }}</a></td>
+                <td>{{ board.name }}</td>
+                <td>{{ board.description }}</td>
+                <td>{% if board.date %}{{ board.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ board.status }}</td>
+                <td>{{ board.active }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('board_show', { 'id': board.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('board_edit', { 'id': board.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('board_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}
