@@ -1,49 +1,29 @@
 {% extends '::base.html.twig' %}
 
 {% block content -%}
-    <h1>Board list</h1>
-
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Active</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+        <a class="btn btn-default" href="{{ path('board_new') }}">Create a board</a>
+    <hr/>
         {% for board in boards %}
-            <tr>
-                <td><a href="{{ path('board_show', { 'id': board.id }) }}">{{ board.id }}</a></td>
-                <td>{{ board.name }}</td>
-                <td>{{ board.description }}</td>
-                <td>{% if board.date %}{{ board.date|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ board.status }}</td>
-                <td>{{ board.active }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('board_show', { 'id': board.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('board_edit', { 'id': board.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <div class="t-board-title">{{ board.name }}</div>
+                    <div class="caption">
+                        <span class="">{{ board.status }}% Complete</span>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{ board.status }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ board.status }}%;">
+                            </div>
+                        </div>
+                        <h3>Description :</h3>
+                        <p class="well board-description">{{ board.description }}</p>
 
-        <ul>
-        <li>
-            <a href="{{ path('board_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+                    </div>
+                    <p class="board-action">
+                        <a class="btn btn-primary pull-left" href="{{ path('board_show', { 'id': board.id }) }}">Show</a>
+                        <a class="btn btn-warning pull-right" href="{{ path('board_edit', { 'id': board.id }) }}">Edit</a>
+                    </p>
+                    <hr/>
+                    <div class="t-board-id">Board id : #{{ board.id }}</div>
+                </div>
+            </div>
+        {% endfor %}
     {% endblock %}

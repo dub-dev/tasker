@@ -1,48 +1,20 @@
 {% extends '::base.html.twig' %}
 
 {% block content -%}
-    <h1>Board</h1>
+    <h1>{{ board.name }}</h1>
+    <a class="t-btn-default btn btn-default pull-right" href="{{ path('board') }}">Back to the list</a>
+    <a style="margin-right:10px" class="t-btn-default btn btn-warning pull-right" href="{{ path('board_edit', { 'id': board.id }) }}">Edit</a>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ board.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ board.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ board.description }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ board.date|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ board.status }}</td>
-            </tr>
-            <tr>
-                <th>Active</th>
-                <td>{{ board.active }}</td>
-            </tr>
-        </tbody>
-    </table>
+    {{ form(delete_form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('board') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('board_edit', { 'id': board.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <div class="well">
+        <div>{{ board.description }}</div>
+        <div class="well" style="margin-top:25px">
+            <span>{{ board.status }}% Complete</span>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{ board.status }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ board.status }}%;">
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

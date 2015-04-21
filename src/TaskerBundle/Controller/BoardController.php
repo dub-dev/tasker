@@ -21,6 +21,10 @@ class BoardController extends Controller
      */
     public function indexAction()
     {
+        if ( !$this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('tasker_homepage'));
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $boards = $em->getRepository('TaskerBundle:Board')->findByUser($this->getUser(), array('date' => 'desc'));
@@ -35,6 +39,10 @@ class BoardController extends Controller
      */
     public function createAction(Request $request)
     {
+        if ( !$this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('tasker_homepage'));
+        }
+
         $board = new Board();
         $form = $this->createCreateForm($board);
         $form->handleRequest($request);
@@ -62,6 +70,10 @@ class BoardController extends Controller
      */
     private function createCreateForm(Board $board)
     {
+        if ( !$this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('tasker_homepage'));
+        }
+
         $form = $this->createForm(new BoardType(), $board, array(
             'action' => $this->generateUrl('board_create'),
             'method' => 'POST',
@@ -78,6 +90,10 @@ class BoardController extends Controller
      */
     public function newAction()
     {
+        if ( !$this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('tasker_homepage'));
+        }
+
         $board = new Board();
         $form   = $this->createCreateForm($board);
 
@@ -93,6 +109,10 @@ class BoardController extends Controller
      */
     public function showAction($id)
     {
+        if ( !$this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('tasker_homepage'));
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $board = $em->getRepository('TaskerBundle:Board')->find($id);
@@ -115,6 +135,10 @@ class BoardController extends Controller
      */
     public function editAction($id)
     {
+        if ( !$this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('tasker_homepage'));
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $board = $em->getRepository('TaskerBundle:Board')->find($id);
@@ -142,6 +166,10 @@ class BoardController extends Controller
     */
     private function createEditForm(Board $board)
     {
+        if ( !$this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('tasker_homepage'));
+        }
+
         $form = $this->createForm(new BoardType(), $board, array(
             'action' => $this->generateUrl('board_update', array('id' => $board->getId())),
             'method' => 'PUT',
@@ -157,6 +185,10 @@ class BoardController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
+        if ( !$this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('tasker_homepage'));
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $board = $em->getRepository('TaskerBundle:Board')->find($id);
@@ -187,6 +219,10 @@ class BoardController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+        if ( !$this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('tasker_homepage'));
+        }
+
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
@@ -214,6 +250,10 @@ class BoardController extends Controller
      */
     private function createDeleteForm($id)
     {
+        if ( !$this->get('security.context')->isGranted('ROLE_USER')) {
+            return $this->redirect($this->generateUrl('tasker_homepage'));
+        }
+
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('board_delete', array('id' => $id)))
             ->setMethod('DELETE')
