@@ -1,5 +1,7 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block fos_user_content %}
+    <a class="btn btn-default" href="{{ path('fos_user_profile_edit') }}">change infos</a>
+    <a class="btn btn-default" href="{{ path('fos_user_change_password') }}">Change password</a>
 {% include "FOSUserBundle:Profile:show_content.html.twig" %}
 {% endblock fos_user_content %}

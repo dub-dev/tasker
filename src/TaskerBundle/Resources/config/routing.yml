@@ -1,3 +1,7 @@
 tasker_homepage:
     path:     /
     defaults: { _controller: TaskerBundle:Default:index }
+
+dashboard:
+    path:     /dashboard
+    defaults: { _controller: TaskerBundle:Default:dashboard }

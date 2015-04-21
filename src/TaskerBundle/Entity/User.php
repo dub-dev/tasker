@@ -22,6 +22,11 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Board", inversedBy="user")
+     */
+    protected $board;
+
 
     /**
      * Get id
@@ -31,5 +36,28 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set board
+     *
+     * @param \TaskerBundle\Entity\Board $board
+     * @return User
+     */
+    public function setBoard(\TaskerBundle\Entity\Board $board = null)
+    {
+        $this->board = $board;
+
+        return $this;
+    }
+
+    /**
+     * Get board
+     *
+     * @return \TaskerBundle\Entity\Board 
+     */
+    public function getBoard()
+    {
+        return $this->board;
     }
 }

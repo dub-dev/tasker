@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('TaskerBundle:Default:index.html.twig');
     }
+
+    public function dashboardAction()
+    {
+        return $this->render('TaskerBundle:Default:dashboard.html.twig');
+    }
 }
