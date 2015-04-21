@@ -116,6 +116,7 @@ class BoardController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $board = $em->getRepository('TaskerBundle:Board')->find($id);
+        $tasks = $em->getRepository('TaskerBundle:Task')->findByBoard($id);
 
         if (!$board) {
             throw $this->createNotFoundException('Unable to find Board board.');
@@ -125,6 +126,7 @@ class BoardController extends Controller
 
         return $this->render('TaskerBundle:Board:show.html.twig', array(
             'board'      => $board,
+            'tasks'       => $tasks,
             'delete_form' => $deleteForm->createView(),
         ));
     }

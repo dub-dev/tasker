@@ -17,4 +17,18 @@
             </div>
         </div>
     </div>
+
+        {% for task in tasks %}
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <h4>{{ task.name }}</h4>
+                    <span>{{ task.status }}% Complete</span>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ task.status }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ task.status }}%;">
+                        </div>
+                    </div>
+                    <div class="well">{{ task.description }}</div>
+                </div>
+            </div>
+        {% endfor  %}
 {% endblock %}

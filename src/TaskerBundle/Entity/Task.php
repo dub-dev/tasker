@@ -22,6 +22,13 @@ class Task
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="Board", inversedBy="task")
+     */
+    private $board;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -29,11 +36,18 @@ class Task
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255)
+     */
+    private $description;
+
+    /**
      * @var integer
      *
-     * @ORM\Column(name="cat_id", type="integer")
+     * @ORM\Column(name="user", type="integer")
      */
-    private $catId;
+    private $user;
 
     /**
      * @var \DateTime
@@ -60,11 +74,34 @@ class Task
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set board
+     *
+     * @param integer $board
+     * @return Task
+     */
+    public function setBoard($board)
+    {
+        $this->board = $board;
+
+        return $this;
+    }
+
+    /**
+     * Get board
+     *
+     * @return integer
+     */
+    public function getBoard()
+    {
+        return $this->board;
     }
 
     /**
@@ -83,7 +120,7 @@ class Task
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -91,26 +128,49 @@ class Task
     }
 
     /**
-     * Set catId
+     * Set description
      *
-     * @param integer $catId
+     * @param string $description
      * @return Task
      */
-    public function setCatId($catId)
+    public function setDescription($description)
     {
-        $this->catId = $catId;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get catId
+     * Get description
      *
-     * @return integer 
+     * @return string
      */
-    public function getCatId()
+    public function getDescription()
     {
-        return $this->catId;
+        return $this->description;
+    }
+
+    /**
+     * Set user
+     *
+     * @param integer $user
+     * @return Task
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return integer
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**
@@ -129,7 +189,7 @@ class Task
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -152,7 +212,7 @@ class Task
     /**
      * Get status
      *
-     * @return integer 
+     * @return integer
      */
     public function getStatus()
     {
@@ -175,7 +235,7 @@ class Task
     /**
      * Get active
      *
-     * @return integer 
+     * @return integer
      */
     public function getActive()
     {
