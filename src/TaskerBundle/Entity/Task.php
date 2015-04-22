@@ -36,13 +36,6 @@ class Task
     private $name;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="string", length=255)
-     */
-    private $description;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="user", type="integer")
@@ -74,29 +67,6 @@ class Task
     }
 
     /**
-     * Set board
-     *
-     * @param integer $board
-     * @return Task
-     */
-    public function setBoard($board)
-    {
-        $this->board = $board;
-
-        return $this;
-    }
-
-    /**
-     * Get board
-     *
-     * @return integer
-     */
-    public function getBoard()
-    {
-        return $this->board;
-    }
-
-    /**
      * Set name
      *
      * @param string $name
@@ -117,29 +87,6 @@ class Task
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Task
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     /**
@@ -209,5 +156,28 @@ class Task
     public function getDone()
     {
         return $this->done;
+    }
+
+    /**
+     * Set board
+     *
+     * @param \TaskerBundle\Entity\Board $board
+     * @return Task
+     */
+    public function setBoard(\TaskerBundle\Entity\Board $board = null)
+    {
+        $this->board = $board;
+
+        return $this;
+    }
+
+    /**
+     * Get board
+     *
+     * @return \TaskerBundle\Entity\Board 
+     */
+    public function getBoard()
+    {
+        return $this->board;
     }
 }

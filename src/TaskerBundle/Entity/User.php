@@ -23,9 +23,9 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Board", inversedBy="user")
+     * @ORM\ManyToMany(targetEntity="Board", mappedBy="users")
      */
-    protected $board;
+    protected $boards;
 
 
     /**
@@ -37,27 +37,45 @@ class User extends BaseUser
     {
         return $this->id;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->boards = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
-     * Set board
+     * Add boards
      *
-     * @param \TaskerBundle\Entity\Board $board
+     * @param \TaskerBundle\Entity\Board $boards
      * @return User
      */
-    public function setBoard(\TaskerBundle\Entity\Board $board = null)
+    public function addBoard(\TaskerBundle\Entity\Board $boards)
     {
-        $this->board = $board;
+        $this->boards[] = $boards;
 
         return $this;
     }
 
     /**
-     * Get board
+     * Remove boards
      *
-     * @return \TaskerBundle\Entity\Board 
+     * @param \TaskerBundle\Entity\Board $boards
      */
-    public function getBoard()
+    public function removeBoard(\TaskerBundle\Entity\Board $boards)
     {
-        return $this->board;
+        $this->boards->removeElement($boards);
+    }
+
+    /**
+     * Get boards
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBoards()
+    {
+        return $this->boards;
     }
 }

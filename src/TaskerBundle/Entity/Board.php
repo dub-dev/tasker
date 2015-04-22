@@ -38,9 +38,9 @@ class Board
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="board")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="boards")
      */
-    private $user;
+    private $users;
 
     /**
      * @var \DateTime
@@ -106,29 +106,6 @@ class Board
     }
 
     /**
-     * Set user
-     *
-     * @param integer $user
-     * @return Board
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return integer 
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
      * Set date
      *
      * @param \DateTime $date
@@ -154,5 +131,45 @@ class Board
     public function __toString()
     {
         return $this->name;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add users
+     *
+     * @param \TaskerBundle\Entity\User $users
+     * @return Board
+     */
+    public function addUser(\TaskerBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \TaskerBundle\Entity\User $users
+     */
+    public function removeUser(\TaskerBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

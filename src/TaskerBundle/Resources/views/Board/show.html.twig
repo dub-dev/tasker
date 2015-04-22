@@ -1,33 +1,38 @@
 {% extends '::base.html.twig' %}
 
 {% block content -%}
-    <h1>{{ board.name }}</h1>
-    <a style="margin-right:10px" class="t-btn-default btn btn-warning pull-right" href="{{ path('board_edit', { 'id': board.id }) }}">Edit</a>
-    <a style="margin-right:10px" class="btn btn-default pull-right" href="{{ path('task_new') }}">New task</a>
+    <a class="btn btn-warning" href="{{ path('task_new') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create task</a>
+    <a style="margin-right:10px" class="btn btn-warning pull-left" href="{{ path('board_edit', { 'id': board.id }) }}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</a>
 
-    {{ form(delete_form) }}
+    <hr/>
+    {% set counter = 0 %}
+    {% for task in tasks %}
+        {% if task.done == 1 %}
+            {% set counter = counter + 1 %}
+        {% endif %}
+    {% endfor %}
+    {% if tasks|length > 0 %}
+        {% set percentage = ((counter / tasks|length)|round(2, 'floor')) * 100 %}
+    {% else %}
+        {% set percentage = 0 %}
+    {% endif %}
 
     <div class="well">
-        <div>{{ board.description }}</div>
-        <div class="well" style="margin-top:25px">
-            {% set counter = 0 %}
-            {% for task in tasks %}
-                {% if task.done == 1 %}
-                    {% set counter = counter + 1 %}
-                {% endif %}
-            {% endfor %}
-            {% if tasks|length > 0 %}
-                {% set percentage = ((counter / tasks|length)|round(2, 'floor')) * 100 %}
-            {% else %}
-                {% set percentage = 0 %}
-            {% endif %}
-            <span>{{ percentage }}% Complete</span>
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ percentage }}%;">
-                </div>
-            </div>
-        </div>
+        <table class="table">
+            <tr>
+                <td class="col-md-6"><h2>{{ board.name }}</h2></td>
+                <td class="col-md-6 progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ percentage }}%;">
+                        <span class="t-bar-percentage">{{ percentage }}% Complete</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
+
+
+
+    <hr/>
         {% for task in tasks %}
             {% if task.done == 1 %}
                 {% set progress = 'Done' %}
@@ -35,11 +40,10 @@
                 {% set progress = 'In progress' %}
             {% endif %}
             <div class="col-sm-6 col-md-4">
-                <div style="overflow:hidden" class="thumbnail">
-                    <h4>{{ task.name }}</h4>
+                <div style="overflow:hidden;padding:20px" class="thumbnail" onClick="location.href='{{ path('task_edit', { 'id': task.id }) }}'">
+                    <h4><li>{{ task.name }}</li></h4>
+                    <hr/>
                     <span>Status : {{ progress }}</span>
-                    <div class="well">{{ task.description }}</div>
-                    <a class="t-btn-default btn btn-warning pull-right" href="{{ path('task_edit', { 'id': task.id }) }}">Edit</a>
                 </div>
             </div>
         {% endfor  %}

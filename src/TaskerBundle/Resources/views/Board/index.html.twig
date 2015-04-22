@@ -1,10 +1,10 @@
 {% extends '::base.html.twig' %}
 
 {% block content -%}
-        <a class="btn btn-default" href="{{ path('board_new') }}">Create a board</a>
+    <a class="btn btn-warning" href="{{ path('board_new') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create board</a>
     <hr/>
         {% for board in boards %}
-            <div class="col-sm-6 col-md-4">
+            <div class="t-pointer col-sm-6 col-md-4" onclick="location.href='{{ path('board_show', { 'id': board.id }) }}'">
                 <div class="thumbnail">
                     <div class="t-board-title">{{ board.name }}</div>
                     <div class="caption">
@@ -13,16 +13,8 @@
                             <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
                             </div>
                         </div>
-                        <h3>Description :</h3>
                         <p class="well board-description">{{ board.description }}</p>
-
                     </div>
-                    <p class="board-action">
-                        <a class="btn btn-primary pull-left" href="{{ path('board_show', { 'id': board.id }) }}">Show</a>
-                        <a class="btn btn-warning pull-right" href="{{ path('board_edit', { 'id': board.id }) }}">Edit</a>
-                    </p>
-                    <hr/>
-                    <div class="t-board-id">Board id : #{{ board.id }}</div>
                 </div>
             </div>
         {% endfor %}

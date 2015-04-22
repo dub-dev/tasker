@@ -25,10 +25,7 @@ class BoardController extends Controller
             return $this->redirect($this->generateUrl('tasker_homepage'));
         }
 
-        $em = $this->getDoctrine()->getManager();
-
-        $boards = $em->getRepository('TaskerBundle:Board')->findByUser($this->getUser(), array('date' => 'desc'));
-
+        $boards = $this->getUser()->getBoards();
         return $this->render('TaskerBundle:Board:index.html.twig', array(
             'boards' => $boards,
         ));
@@ -50,7 +47,9 @@ class BoardController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $board->setUser($user);
+            $board->addUser($user);
+            //$board->setUsers($user);
+            $board->setDate(new \DateTime('NOW'));
             $em->persist($board);
             $em->flush();
 
