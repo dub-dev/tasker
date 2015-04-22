@@ -16,11 +16,8 @@ class BoardType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')
+            ->add('description', 'textarea')
             ->add('date')
-            ->add('status')
-            ->add('active')
-            ->add('user')
         ;
     }
     

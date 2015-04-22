@@ -17,10 +17,8 @@ class TaskType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('user')
             ->add('date')
-            ->add('done')
-            ->add('active')
+            ->add('done', 'checkbox')
             ->add('board')
         ;
     }

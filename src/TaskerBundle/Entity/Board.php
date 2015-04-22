@@ -50,21 +50,6 @@ class Board
     private $date;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="status", type="integer")
-     */
-    private $status;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="active", type="integer")
-     */
-    private $active;
-
-
-    /**
      * Get id
      *
      * @return integer 
@@ -166,49 +151,8 @@ class Board
         return $this->date;
     }
 
-    /**
-     * Set status
-     *
-     * @param integer $status
-     * @return Board
-     */
-    public function setStatus($status)
+    public function __toString()
     {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return integer 
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Set active
-     *
-     * @param integer $active
-     * @return Board
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    /**
-     * Get active
-     *
-     * @return integer 
-     */
-    public function getActive()
-    {
-        return $this->active;
+        return $this->name;
     }
 }

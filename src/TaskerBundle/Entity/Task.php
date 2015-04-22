@@ -24,7 +24,7 @@ class Task
     /**
      * @var integer
      *
-     * @ORM\Column(name="board", type="integer")
+     * @ORM\ManyToOne(targetEntity="Board", inversedBy="task")
      */
     private $board;
 
@@ -57,19 +57,11 @@ class Task
     private $date;
 
     /**
-     * @var integer
+     * @var boolean
      *
-     * @ORM\Column(name="done", type="integer")
+     * @ORM\Column(name="done", type="boolean")
      */
     private $done;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="active", type="integer")
-     */
-    private $active;
-
 
     /**
      * Get id
@@ -199,7 +191,7 @@ class Task
     /**
      * Set done
      *
-     * @param integer $done
+     * @param boolean $done
      * @return Task
      */
     public function setDone($done)
@@ -212,33 +204,10 @@ class Task
     /**
      * Get done
      *
-     * @return integer
+     * @return boolean
      */
     public function getDone()
     {
         return $this->done;
-    }
-
-    /**
-     * Set active
-     *
-     * @param integer $active
-     * @return Task
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    /**
-     * Get active
-     *
-     * @return integer
-     */
-    public function getActive()
-    {
-        return $this->active;
     }
 }

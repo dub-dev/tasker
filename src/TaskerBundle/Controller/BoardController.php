@@ -43,12 +43,14 @@ class BoardController extends Controller
             return $this->redirect($this->generateUrl('tasker_homepage'));
         }
 
+        $user = $this->get('security.context')->getToken()->getUser();
         $board = new Board();
         $form = $this->createCreateForm($board);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $board->setUser($user);
             $em->persist($board);
             $em->flush();
 
