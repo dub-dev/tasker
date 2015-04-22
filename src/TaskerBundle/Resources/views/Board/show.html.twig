@@ -30,20 +30,12 @@
         </table>
     </div>
 
-
-
     <hr/>
         {% for task in tasks %}
-            {% if task.done == 1 %}
-                {% set progress = 'Done' %}
-            {% else %}
-                {% set progress = 'In progress' %}
-            {% endif %}
             <div class="col-sm-6 col-md-4">
                 <div style="overflow:hidden;padding:20px" class="thumbnail" onClick="location.href='{{ path('task_edit', { 'id': task.id }) }}'">
+                    <p class="t-done-bar t-done{{ task.done }}"></p>
                     <h4><li>{{ task.name }}</li></h4>
-                    <hr/>
-                    <span>Status : {{ progress }}</span>
                 </div>
             </div>
         {% endfor  %}

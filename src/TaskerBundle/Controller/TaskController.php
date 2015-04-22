@@ -42,7 +42,6 @@ class TaskController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity->setUser($user);
             $entity->setDate(new \DateTime('NOW'));
             $em->persist($entity);
             $em->flush();

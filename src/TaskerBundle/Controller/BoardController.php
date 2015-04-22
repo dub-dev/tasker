@@ -47,7 +47,7 @@ class BoardController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $board->addUser($user);
+            //$board->addUser($user);
             //$board->setUsers($user);
             $board->setDate(new \DateTime('NOW'));
             $em->persist($board);

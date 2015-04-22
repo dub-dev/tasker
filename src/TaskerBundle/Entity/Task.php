@@ -36,13 +36,6 @@ class Task
     private $name;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="user", type="integer")
-     */
-    private $user;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
@@ -87,29 +80,6 @@ class Task
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set user
-     *
-     * @param integer $user
-     * @return Task
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return integer
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**
